@@ -46,6 +46,7 @@ resource "aws_s3_bucket_object" "index" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = "index.html"
   source       = "${path.module}/../website/index.html"
+  etag         = filemd5("${path.module}/../website/index.html")
   content_type = "text/html"
 }
 
@@ -53,5 +54,6 @@ resource "aws_s3_bucket_object" "css" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = "style.css"
   source       = "${path.module}/../website/style.css"
+  etag         = filemd5("${path.module}/../website/style.css") 
   content_type = "text/css"
 }
